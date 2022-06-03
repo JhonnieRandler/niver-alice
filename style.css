@@ -227,4 +227,8 @@ header .navigation a:hover{
   .content .info p{
     font-size: 14px;
   }
+
+  .content .info a {
+    font-size: 12px;
+  }
 }
