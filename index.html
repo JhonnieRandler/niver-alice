@@ -18,7 +18,7 @@
             position: absolute;
             z-index: 0;
             animation: drift linear infinite;
-            opacity: 0.8;
+            opacity: 0.6; /* Leve transparência */
         }
         .cloud:nth-child(1) {
             width: 200px;
@@ -107,21 +107,42 @@
         .highlight-text {
             color: #93c5fd; /* Azul claro vibrante */
         }
+        #play-pause-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 8px; /* Padding com leve horizontal */
+        }
+        #play-pause-btn img {
+            width: 20px;
+            height: 20px;
+        }
         @media (max-width: 640px) {
             h1 {
-                font-size: 2rem; /* Reduzido para dispositivos móveis */
+                font-size: 1.75rem; /* Fonte menor para dispositivos móveis */
                 margin-left: 16px;
                 margin-right: 16px;
             }
             .glass-box {
-                padding: 15px;
-                max-width: 95%;
+                padding: 12px; /* Padding reduzido */
+                max-width: 85%; /* Caixa menor */
             }
             .cloud:nth-child(1) { width: 100px; }
             .cloud:nth-child(2) { width: 80px; }
             .cloud:nth-child(3) { width: 90px; }
             #modal-content {
                 padding: 10px;
+            }
+            .action-btn {
+                padding: 6px 12px; /* Botões menores */
+                font-size: 0.9rem; /* Texto menor */
+            }
+            #play-pause-btn {
+                padding: 6px; /* Ajuste com leve padding horizontal */
+            }
+            #play-pause-btn img {
+                width: 16px; /* Imagem menor em dispositivos móveis */
+                height: 16px;
             }
         }
     </style>
@@ -130,7 +151,7 @@
     <img src="cloud1.png" class="cloud" alt="Nuvem 1">
     <img src="cloud2.png" class="cloud" alt="Nuvem 2">
     <img src="cloud3.png" class="cloud" alt="Nuvem 3">
-    <h1 class="title text-5xl md:text-6xl font-bold mb-4 text-white drop-shadow-lg">Feliz Aniversário, Alice!</h1>
+    <h1 class="title text-4xl md:text-5xl font-bold mb-4 text-white drop-shadow-lg">Feliz Aniversário, Alice!</h1>
     <div class="glass-box">
         <p class="text-lg md:text-xl mb-6 whitespace-pre-line">
             Hoje o céu vestiu azul pra te homenagear,
@@ -160,18 +181,21 @@
             mas se coubesse… seria azul, seria tua companhia.
         </p>
     </div>
-    <div class="mt-4" style="z-index: 10; position: relative;">
-        <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300" onclick="openModal()">
+    <div class="mt-4 flex space-x-4" style="z-index: 10; position: relative;">
+        <button class="action-btn bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300" onclick="openModal()">
             Enviar um Abraço!
+        </button>
+        <button id="play-pause-btn" class="bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-lg transition duration-300" onclick="toggleMusic()">
+            <img src="music-note.png" alt="Tocar Música" id="play-pause-icon">
         </button>
     </div>
     <div id="modal">
         <div id="modal-content">
             <img src="hug.png" alt="Abraço para Alice">
-            <button class="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg" onclick="closeModal()">Fechar</button>
+            <button class="mt-4 action-btn bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg" onclick="closeModal()">Fechar</button>
         </div>
     </div>
-    <audio id="background-music" autoplay loop>
+    <audio id="background-music" loop>
         <source src="background.mp3" type="audio/mpeg">
         Seu navegador não suporta o elemento de áudio.
     </audio>
@@ -188,6 +212,28 @@
         function closeModal() {
             document.getElementById('modal').style.display = 'none';
         }
+        function toggleMusic() {
+            const audio = document.getElementById('background-music');
+            const icon = document.getElementById('play-pause-icon');
+            if (audio.paused) {
+                audio.play();
+                icon.src = 'pause.png';
+                icon.alt = 'Pausar Música';
+            } else {
+                audio.pause();
+                icon.src = 'music-note.png';
+                icon.alt = 'Tocar Música';
+            }
+        }
+        window.onload = function() {
+            const audio = document.getElementById('background-music');
+            const icon = document.getElementById('play-pause-icon');
+            audio.play().catch(function(error) {
+                console.log('Autoplay bloqueado:', error);
+                icon.src = 'music-note.png';
+                icon.alt = 'Tocar Música';
+            });
+        };
     </script>
 </body>
 </html>
