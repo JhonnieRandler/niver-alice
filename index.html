@@ -1,45 +1,193 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing Website</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
-  </head>
-  <body>
+    <title>Feliz Aniversário, Alice!</title>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #1e3a8a, #60a5fa);
+            min-height: 100vh;
+            overflow-x: hidden;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            position: relative;
+        }
+        .cloud {
+            position: absolute;
+            z-index: 0;
+            animation: drift linear infinite;
+            opacity: 0.8;
+        }
+        .cloud:nth-child(1) {
+            width: 200px;
+            top: 10%;
+            left: -200px;
+            animation-duration: 50s;
+        }
+        .cloud:nth-child(2) {
+            width: 150px;
+            top: 30%;
+            left: -150px;
+            animation-duration: 70s;
+        }
+        .cloud:nth-child(3) {
+            width: 180px;
+            top: 50%;
+            left: -180px;
+            animation-duration: 60s;
+        }
+        @keyframes drift {
+            from { transform: translateX(-200px); }
+            to { transform: translateX(150vw); }
+        }
+        .glass-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            max-width: 600px;
+            width: 90%;
+            max-height: 70vh;
+            overflow-y: auto;
+            z-index: 10;
+            position: relative;
+        }
+        .glass-box::-webkit-scrollbar {
+            width: 8px;
+        }
+        .glass-box::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        .glass-box::-webkit-scrollbar-thumb {
+            background: #93c5fd;
+            border-radius: 10px;
+        }
+        .glass-box::-webkit-scrollbar-thumb:hover {
+            background: #60a5fa;
+        }
+        .title {
+            animation: bounce 2s ease-in-out infinite;
+            z-index: 10;
+            position: relative;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        #modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 50;
+        }
+        #modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 90%;
+            max-height: 90%;
+        }
+        #modal-content img {
+            max-width: 100%;
+            max-height: 60vh;
+            object-fit: contain;
+        }
+        .highlight-text {
+            color: #93c5fd; /* Azul claro vibrante */
+        }
+        @media (max-width: 640px) {
+            h1 {
+                font-size: 2rem; /* Reduzido para dispositivos móveis */
+                margin-left: 16px;
+                margin-right: 16px;
+            }
+            .glass-box {
+                padding: 15px;
+                max-width: 95%;
+            }
+            .cloud:nth-child(1) { width: 100px; }
+            .cloud:nth-child(2) { width: 80px; }
+            .cloud:nth-child(3) { width: 90px; }
+            #modal-content {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center text-center relative">
+    <img src="cloud1.png" class="cloud" alt="Nuvem 1">
+    <img src="cloud2.png" class="cloud" alt="Nuvem 2">
+    <img src="cloud3.png" class="cloud" alt="Nuvem 3">
+    <h1 class="title text-5xl md:text-6xl font-bold mb-4 text-white drop-shadow-lg">Feliz Aniversário, Alice!</h1>
+    <div class="glass-box">
+        <p class="text-lg md:text-xl mb-6 whitespace-pre-line">
+            Hoje o céu vestiu azul pra te homenagear,
+            como se soubesse que teu riso é mais que luar.
+            Teu abraço tem a calma de um mar sem fim,
+            e mesmo quando a vida aperta… tu é o meu jardim.
 
-    <section>
-      <input type="checkbox" id="check">
-      <!-- <header>
-        </div>
-        <h2><a href="#" class="logo">Logo</a></h2>
-        <div class="navigation">
-          <a href="#">Home</a>
-          <a href="#">About</a>
-          <a href="#">Info</a>
-          <a href="#">Services</a>
-          <a href="#">Contact</a>
-        </div>
-        <label for="check">
-        <i class="fas fa-bars menu-btn"></i>
-        <i class="fas fa-times close-btn"></i>
-        </label>
-      </header> -->
-      <div class="content">
-        <div class="info">
-          <h2>Querida Alice <br><span>Feliz Aniversário!</span></h2>
-          <p>Quero que saiba que te amo do fundo do meu coração, e que adoro o fato de que você fala
-            feito o homem da cobra. Não quero nunca estar distante de ti. Estou morrando de saudades de ti!</p>
-          <a href="#" class="info-btn">Abraço Virtual</a>
-        </div>
-      </div>
-      <!-- <div class="media-icons">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-      </div> -->
-    </section>
+            Tem amor que não precisa de legenda ou de ensaio,
+            o nosso é tipo canção boa: fica, sem atalho.
+            E se um dia eu parecer distante, meio ausente,
+            lembra: <span id="translate-text" class="italic cursor-pointer highlight-text" onclick="toggleTranslation()">Don’t think I would just forget about it</span>. Evidente.
+            (Sim, eu lembrei do teu aniversário. Eu sou velho, mas coerente.)
 
-  </body>
+            Já somos veteranos nesse rolê de existir,
+            ficando velhos — e nem tentamos mais fingir.
+            Mas rir contigo é travar o tempo, é desafiar
+            o tal do “amadurecer” que dizem que é deixar de brincar.
+
+            E se por acaso a vida for escuridão ou tropeço,
+            lembra: flutuamos juntos aqui embaixo — com tropeço e com apreço.
+            Mas contigo até as sombras têm seu brilho especial,
+            teu azul acende tudo, até o cinza mais banal.
+
+            Irmã, hoje é teu dia e eu só queria dizer:
+            entre todos os mundos, é no teu que eu quero viver.
+            Amor de irmão não se mede, nem cabe em verso ou melodia,
+            mas se coubesse… seria azul, seria tua companhia.
+        </p>
+    </div>
+    <div class="mt-4" style="z-index: 10; position: relative;">
+        <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300" onclick="openModal()">
+            Enviar um Abraço!
+        </button>
+    </div>
+    <div id="modal">
+        <div id="modal-content">
+            <img src="hug.png" alt="Abraço para Alice">
+            <button class="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg" onclick="closeModal()">Fechar</button>
+        </div>
+    </div>
+    <audio id="background-music" autoplay loop>
+        <source src="background.mp3" type="audio/mpeg">
+        Seu navegador não suporta o elemento de áudio.
+    </audio>
+    <script>
+        function toggleTranslation() {
+            const textElement = document.getElementById('translate-text');
+            const original = "Don’t think I would just forget about it";
+            const translated = "Não pense que eu simplesmente esqueceria";
+            textElement.textContent = textElement.textContent === original ? translated : original;
+        }
+        function openModal() {
+            document.getElementById('modal').style.display = 'flex';
+        }
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+    </script>
+</body>
 </html>
